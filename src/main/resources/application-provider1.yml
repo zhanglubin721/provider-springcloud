@@ -1,0 +1,47 @@
+server:
+  port: 9081
+spring:
+  application:
+    name: provider-springcloud
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    database: 1
+  datasource:
+    driver-class-name: com.alibaba.druid.proxy.DruidDriver
+    url: jdbc:mysql://127.0.0.1:3306/ehouse?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+    username: root
+    password: root
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka1.com:9091/eureka/,http://eureka2.com:9092/eureka/,http://eureka3.com:9093/eureka/
+feign:
+  hystrix:
+    enabled: true
+
+hystrix:
+  command:
+    TestFeignService#delete(Long):
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 30000
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+  threadpool:
+    default:
+      coreSize: 10
+      maxQueueSize: 50
+      queueSizeRejectionThreshold: 30
+      keepAliveTimeMinutes: 3
+
+# MyBatis
+mybatis:
+  # 搜索指定包别名
+  typeAliasesPackage: com.zhanglubin.providerspringcloud.provider.domain
+  # 配置mapper的扫描，找到所有的mapper.xml映射文件
+  mapperLocations: classpath:mybatis/*Mapper.xml
