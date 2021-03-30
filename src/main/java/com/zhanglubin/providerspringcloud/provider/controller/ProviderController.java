@@ -32,6 +32,7 @@ public class ProviderController {
         restTemplate.getForObject("http://127.0.0.1:9081/test1/test4", void.class);
     }
 
+
     //使用Feign调用只能使用fallback或者fallbackFactory,会自动映射对应fallback方法
     @RequestMapping("/test2")
     public void testProviderFeign2() {
