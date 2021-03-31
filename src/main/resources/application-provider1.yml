@@ -20,6 +20,10 @@ feign:
   hystrix:
     enabled: true
 
+provider-springcloud:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule
+
 hystrix:
   command:
     TestFeignService#delete(Long):

@@ -29,7 +29,7 @@ public class ProviderController {
     @RequestMapping("/test1")
     public void testProviderFeign1() {
         System.out.println("-------进入test1--------");
-        restTemplate.getForObject("http://127.0.0.1:9081/test1/test4", void.class);
+        restTemplate.getForObject("http://provider-springcloud/test/test1?id=1", void.class);
     }
 
 
